@@ -23,7 +23,7 @@
         },
         methods: {
             fileUploadChange(event) {
-                console.log('upload---', this.$refs.fileUploader.files, 'test 远程分支合并代码')
+                console.log('upload---', this.$refs.fileUploader.files, 'test 远程分支合并代码 master')
             },
             setVuex() {
                 this.$store.commit('firstStore/setApplyId', '123456')
