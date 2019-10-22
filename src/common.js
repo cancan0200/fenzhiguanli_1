@@ -12,3 +12,5 @@ Vue.prototype.resSuccess = function (res, err) {
 
   return false
 }
+
+

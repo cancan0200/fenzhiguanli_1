@@ -1,26 +1,27 @@
 <template>
   <div>
-      <div class="left">
-          left
-      </div>
-      <div class="top">
-          <v-header></v-header>
-      </div>
-      <div class="main">
-          main
-          <router-view></router-view>
-      </div>
+    <layout></layout>
+<!--      <div class="left">-->
+<!--          left-->
+<!--      </div>-->
+<!--      <div class="top">-->
+<!--      </div>-->
+<!--      <div class="main">-->
+<!--          main-->
+<!--          <router-view></router-view>-->
+<!--      </div>-->
   </div>
 
 </template>
 
 <script>
-import header from './components/header'
-export default {
-    components: {
-        'v-header': header
-    }
-}
+
+  import layout from './components/layout'
+  export default {
+      components: {
+        layout
+      }
+  }
 </script>
 
 <style>
