@@ -1,10 +1,9 @@
 /**
  * @file 设置缓存
- * @author songgaoke
+ * @author zhoucan
  */
 
 export default {
-  // ==================sessionsTorage设置缓存================
   // 设置缓存
   sessionSet: function (name, data) {
     sessionStorage.removeItem(name)

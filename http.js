@@ -19,21 +19,21 @@ request.interceptors.request.use(function (config) {
   return Promise.reject(error)
 })
 
-// 添加响应拦截器
-request.interceptors.response.use(function (response) {
-  // 只返回数据
-  return response.data
-}, function (error) {
-  const status = error.response.status
-  if (status >= 500) {
-    alert('服务繁忙请稍后再试')
-  } else if (status >= 400) {
-    alert(error.response.data.message)
-  }
-  // 对响应错误做点什么
-  console.dir(error)
-  return Promise.reject(error)
-})
+// // 添加响应拦截器
+// request.interceptors.response.use(function (response) {
+//   // 只返回数据
+//   return response.data
+// }, function (error) {
+//   const status = error.response.status
+//   if (status >= 500) {
+//     alert('服务繁忙请稍后再试')
+//   } else if (status >= 400) {
+//     alert(error.response.data.message)
+//   }
+//   // 对响应错误做点什么
+//   console.dir(error)
+//   return Promise.reject(error)
+// })
 
 const get = (url, data) => request.get(url, {
   params: data

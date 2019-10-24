@@ -4,7 +4,7 @@
     <button @click="getTargetArr">生成</button>
     {{targetArr}}}
 
-    <button @click="setVuex()">设置VUEX</button>
+    <button class="mr-10" @click="setVuex()">设置VUEX</button>
     <button @click="getVuex()">得到VUEX</button>
     {{isMenu}}
 

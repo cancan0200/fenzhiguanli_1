@@ -1,13 +1,5 @@
 <template>
   <!-- 模板文件-->
-  <!--  <el-container>-->
-  <!--    <el-aside width="200px">Aside</el-aside>-->
-  <!--    <el-container>-->
-  <!--      <el-header>Header</el-header>-->
-  <!--      <el-main>Main</el-main>-->
-  <!--      <el-footer>Footer</el-footer>-->
-  <!--    </el-container>-->
-  <!--  </el-container>-->
   <div>
     <div class="background-top">
       <div class="logo-wrapper">
@@ -21,15 +13,24 @@
       <div class="menu-wrapper">
         <el-row class="tac">
           <el-col :span="24">
+            <!--   :class="[{'menu--folded': isMenuCollapse===false}]"-->
             <el-menu
               :default-active="menuDefault"
-              class="el-menu-vertical-demo"
+              class="el-menu-vertical"
               background-color="#545c64"
               text-color="#fff"
               router
+              :collapse="isMenuCollapse"
               active-text-color="#ffd04b"
               @select="menuSelectHandle"
             >
+              <el-row class="icon-wrapper row-bg" :style="iconWidth" type="flex" justify="end">
+                <el-col>
+                  <div class="text-right" @click="toggleMenuClose()">
+                    <i class="el-icon-menu"></i>
+                  </div>
+                </el-col>
+              </el-row>
               <el-submenu v-for="(item, index) in menuList" :key="index" :index="item.index">
                 <template slot="title">
                   <i class="el-icon-location"></i>
@@ -44,11 +45,12 @@
         </el-row>
       </div>
       <div class="main-wrapper">
-        <div class="topWrapper">
+        <div class="top-wrapper">
           <el-tabs
             v-model="editableTabsValue"
             type="card"
             editable
+            class="top--tabs mb-0"
             @tab-remove="romoveTabsHandle"
             @tab-click="clickTabsHandle"
           >
@@ -63,11 +65,13 @@
             </el-tab-pane>
           </el-tabs>
         </div>
-        <div class="content">
-          <keep-alive>
-            <router-view v-if="$route.meta.keepAlive"></router-view>
-          </keep-alive>
-          <router-view v-if="!$route.meta.keepAlive"></router-view>
+        <div class="layout-main">
+          <div class="layout-wrapper">
+            <keep-alive>
+              <router-view v-if="$route.meta.keepAlive"></router-view>
+            </keep-alive>
+            <router-view v-if="!$route.meta.keepAlive"></router-view>
+          </div>
         </div>
       </div>
     </div>
@@ -89,12 +93,14 @@
 
 <script>
   import getCertainNode from './../util/utils.js'
+  import Storage from '../store/Storage'
 
   export default {
     name: 'layout',
     data () {
       return {
         isExitModal: false,
+        isMenuCollapse: false,
 
         editableTabsValue: '',
         editableTabs: [],
@@ -143,7 +149,23 @@
         ]
       }
     },
+    computed: {
+      iconWidth () {
+        return !this.isMenuCollapse ? 'width: 300px' : 'width: 63px'
+      }
+    },
+    mounted() {
+      this.initData();
+    },
     methods: {
+      initData(){
+        let tabsGet = Storage.sessionGet('cacheTabs');
+        this.editableTabs = tabsGet && tabsGet.length > 0 ? tabsGet : []
+
+        let  editableTabsValue = Storage.sessionGet('cacheActiveTabs')
+        this.editableTabsValue = editableTabsValue ? editableTabsValue : ''
+        console.log(editableTabsValue)
+      },
       // 菜单选择回调
       // index: 选中菜单项的 index, indexPath: 选中菜单项的 index path
       menuSelectHandle (index, indexPath) {
@@ -161,6 +183,8 @@
           this.editableTabs.push(tabItem)
         }
         this.editableTabsValue = index
+        Storage.sessionSet('cacheTabs', this.editableTabs)
+        Storage.sessionSet('cacheActiveTabs', this.editableTabsValue)
       },
 
       // tabs 删除回调
@@ -176,8 +200,8 @@
                 activeName = nextTab.name
               }
             }
-
           })
+          Storage.sessionSet('cacheTabs', this.editableTabs)
         }
 
         this.editableTabsValue = activeName
@@ -192,16 +216,22 @@
           })
           this.menuDefault = tabItem.name
         }
+        this.editableTabsValue = tabItem.name
+        Storage.sessionSet('cacheActiveTabs', this.editableTabsValue)
       },
 
-      exit() {
+      exit () {
         this.isExitModal = true
+      },
+
+      toggleMenuClose () {
+        this.isMenuCollapse = !this.isMenuCollapse
       }
     }
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   body {
     margin: 0;
     padding: 0;
@@ -234,19 +264,56 @@
 
   .content-wrapper {
     display: flex;
-
+    background: #F0F2F5;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
     .menu-wrapper {
-      width: 300px;
+      /*width: 300px;*/
       background-color: #545C64;
+      height: 100%;
+      .icon-wrapper {
+        border: 0;
+        padding: 10px 20px 10px 0;
+        background: rgba(67, 74, 80, 0.8);
+        i {
+          color: #fff;
+          font-size: 20px
+        }
+      }
+      .el-menu-vertical{
+        height: 100%;
+      }
     }
 
     .main-wrapper {
       width: 100%;
-    }
+      height: 100%;
+      /*padding: 20px 30px;*/
+      .top-wrapper{
+        .top--tabs{
+          background: #fff;
+          padding-left: 30px;
+          .el-tabs__header{
+            margin: 0 !important;
+          }
+          .el-tabs--card>.el-tabs__header .el-tabs__item.is-active.is-closable {
+            background: #F0F2F5 !important;
+          }
+        }
+      }
 
-    .content {
-      padding: 30px;
-      background: #fff;
+      .layout-main {
+        padding: 20px 30px;
+        background: #F0F2F5;
+        .layout-wrapper{
+          background: #fff;
+        }
+      }
     }
   }
 
