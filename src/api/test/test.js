@@ -1,5 +1,5 @@
 
-import {GET, POST, DEL} from './requestFuc'
+import {GET, POST, DEL} from '../requestFunc'
 
 const ENTRY_API = {
     guideAdd: param => { // 办事指南新增
