@@ -1,9 +1,13 @@
 <template>
   <!--此页面专用es6学习-->
   <div>
-    <el-button type="primary" @click="testArguLocation(1, null)">传入null</el-button>
-    <el-button type="primary" @click="testArguLocation(2, undefined)">传入undefined</el-button>
-    <el-button type="primary" @click="testSome()">some 方法</el-button>
+    <div class="study-box-wrap">
+      <el-button type="primary" @click="testArguLocation(1, null)">传入null</el-button>
+      <el-button type="primary" @click="testArguLocation(2, undefined)">传入undefined</el-button>
+      <el-button type="primary" @click="testSome()">some 方法</el-button>
+    </div>
+
+    <el-row class="mt-10">ss</el-row>
   </div>
 </template>
 
@@ -12,7 +16,7 @@
 
   export default {
     name: 'es6',
-    mounted() {
+    mounted () {
       console.log(ENTRY_API)
       ENTRY_API.guideAdd().then(res => {
         console.log('ss')

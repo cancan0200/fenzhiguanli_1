@@ -1,0 +1,14 @@
+
+@import "../variable";
+
+.study-box-wrap {
+  padding: 5px 15px;
+  background-color: #fff;
+  &.box__border {
+    border: 1px solid $color-border;
+  }
+
+  &.box__nobg {
+    background-color: transparent;
+  }
+}

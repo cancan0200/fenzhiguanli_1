@@ -127,8 +127,12 @@
                 index: '/exercise/es6'
               },
               {
-                title: '选项2',
-                index: '2-2'
+                title: '算法',
+                index: '/exercise/algorithm'
+              },
+              {
+                title: 'css',
+                index: '/exercise/css'
               }
             ]
           },
@@ -296,6 +300,7 @@
     .main-wrapper {
       width: 100%;
       height: 100%;
+      position: relative;
       /*padding: 20px 30px;*/
       .top-wrapper{
         .top--tabs{
@@ -312,9 +317,16 @@
 
       .layout-main {
         padding: 20px 30px;
+        position: absolute;
+        top: 41px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        /*height: 100%;*/
         background: #F0F2F5;
         .layout-wrapper{
-          background: #fff;
+          height: 100%;
+          /*background: #fff;*/
         }
       }
     }
