@@ -6,8 +6,11 @@
       <el-button type="primary" @click="testArguLocation(2, undefined)">传入undefined</el-button>
       <el-button type="primary" @click="testSome()">some 方法</el-button>
     </div>
+    <div class="study-box-wrap mt-10">
+      <el-row class="mt-10">ss</el-row>
+    </div>
 
-    <el-row class="mt-10">ss</el-row>
+
   </div>
 </template>
 

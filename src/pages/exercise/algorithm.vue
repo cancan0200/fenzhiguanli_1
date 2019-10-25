@@ -1,8 +1,15 @@
 <template>
   <div class="algorithm">
     <!--记录一下写过的算法题-->
-    <el-button type="primary" @click="getTwoSum()">两数之和</el-button>
-    <el-button type="primary" @click="addTwoNumbers()">两数相加</el-button>
+    <div class="study-box-wrap">
+      <el-button type="primary" @click="getTwoSum()">两数之和</el-button>
+      <el-button type="primary" @click="addTwoNumbers()">两数相加</el-button>
+      <el-button type="primary" @click="removeDuplicates()">删除排序数组中重复的项</el-button>
+      <el-button type="primary" @click="removeElement()">移除元素</el-button>
+      <el-button type="primary" @click="combinationSum()">组合总和</el-button>
+
+    </div>
+
   </div>
 </template>
 
@@ -60,7 +67,7 @@
 
         var addTwoNumbers = function (l1, l2) {
           let l1next = l1, l2next = l2
-          while(l1next && l2next){
+          while (l1next && l2next) {
 
           }
 
@@ -103,6 +110,71 @@
         L2.next = new ListNode(4)
 
         console.log(addTwoNumbers(L1, L2))
+      },
+
+      //  给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。
+      //
+      // 不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。
+
+      removeDuplicates () {
+        var removeDuplicates = function (nums) {
+          let i = 0
+          while (i < nums.length) {
+            if (nums[i] === nums[i + 1]) {
+              nums.splice(i + 1, 1)
+            } else {
+              i++
+            }
+          }
+          return nums.length
+        }
+
+        let testArr = [0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 4]
+        console.log(removeDuplicates(testArr))
+      },
+
+      /*
+            给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。
+      不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。
+      元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。*/
+      removeElement () {
+        var removeElement = function (nums, val) {
+          for(let i = nums.length - 1; i >= 0; i--){
+            if(nums[i] === val){
+              nums.splice(i, 1)
+            }
+          }
+          return nums.length
+        }
+
+        let nums = [0, 1, 2, 2, 3, 0, 4, 2], val = 2
+        console.log(removeElement(nums, val))
+      },
+
+      // 给定一个无重复元素的数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。
+      // candidates 中的数字可以无限制重复被选取。
+      combinationSum() {
+        var combinationSum = function (candidates, target, mark = 0, addArr = []) {
+          if(target < 0){
+            return null
+          } else if(target === 0){
+            return addArr
+          } else {
+            for(let i = mark; i < candidates.length; i++) {
+              if(target < candidates[i]) {
+                break
+              }
+              addArr.push(candidates[i])
+              let result = combinationSum(candidates, target - candidates[i], i, addArr)
+              if(result) {
+                return result
+              }
+            }
+          }
+        }
+
+        let candidates = [2,3,6,7], target = 9
+        console.log(combinationSum(candidates, target), target)
       }
     }
   }
