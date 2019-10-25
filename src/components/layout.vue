@@ -164,6 +164,7 @@
 
         let  editableTabsValue = Storage.sessionGet('cacheActiveTabs')
         this.editableTabsValue = editableTabsValue ? editableTabsValue : ''
+        this.menuDefault = editableTabsValue ? editableTabsValue : ''
         console.log(editableTabsValue)
       },
       // 菜单选择回调
@@ -201,11 +202,13 @@
               }
             }
           })
-          Storage.sessionSet('cacheTabs', this.editableTabs)
         }
 
         this.editableTabsValue = activeName
         this.editableTabs = tabs.filter(tab => tab.name !== targetName)
+
+        Storage.sessionSet('cacheTabs', this.editableTabs)
+        Storage.sessionSet('cacheActiveTabs', this.editableTabsValue)
       },
 
       // 点击tabs
