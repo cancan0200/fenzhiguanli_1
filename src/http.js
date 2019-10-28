@@ -1,38 +1,9 @@
-/*
-// /!**
-//  *
-//  *!/
-// import Vue from 'vue'
-// import axios from 'axios'
-//
-//
-// const server = axios.create({
-//   baseURL: 'https://jsonplaceholder.typicode.com', //请求url
-//   timeout: 3000, //超时处理
-//   withCredentials: false, //是否跨域
-// });
-//
-//
-// //添加一个请求拦截器
-// server.interceptors.request.use(function (config) {
-//   //在请求发出之前进行一些操作，比如请求头携带内容
-//   config.headers['Content-Type'] = 'application/json, text/plain';
-//   return config;
-// }, function (error) {
-//   //Do something with request error
-//   return error;
-// })
-//
-//
-// export default server
-*/
-
-import axios from 'axios'
+import axios from 'axios';
 
 // 创建axios请求实例
 const request = axios.create({
   baseURL: 'https://jsonplaceholder.typicode.com/', // 设置跨域代理接口统一的前置地址
-  timeout: 1000,
+  timeout: 3000,
   headers: {
     'Content-Type': 'application/json; charset=utf-8',
     'Authorization': localStorage.getItem('token')
@@ -74,7 +45,5 @@ const post = (url, data) => request.post(url, data)
 // const put = (url, data) => request.put(url, data)
 // const patch = (url, data) => request.patch(url, data)
 
-export {
-  get,
-  post
-}
+// export default request
+export default request
