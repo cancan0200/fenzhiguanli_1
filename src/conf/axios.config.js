@@ -30,7 +30,8 @@ const conf = {
   },
   root: {
     cloud: {
-      baseURL: window.appBaseUrl,
+      // baseURL: 'http://www.example.com',
+      baseUrl: '/api',
       timeout: 30000
     },
   }

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import config from './conf/axios.config'
+import { merge, isOwnEmpty } from './util/utils'
 
 export const http = getInstances(config)
 /**
@@ -45,25 +46,6 @@ function getInstances(conf) {
   return result
 }
 
-/**
- * 深度合并多个对象，返回合并后的新对象
- * @private
- * @param  {...Object} objs 多个对象
- * @return {Object}    返回合并后的新对象，原对象内容不变
- */
-function merge(...objs) {
-  let result = {}
-  for (let obj of objs) {
-    for (let key in obj) {
-      if (typeof result[key] === 'object' && typeof obj[key] === 'object') {
-        result[key] = merge(result[key], obj[key])
-      } else {
-        result[key] = obj[key]
-      }
-    }
-  }
-  return result
-}
 
 export default http
 

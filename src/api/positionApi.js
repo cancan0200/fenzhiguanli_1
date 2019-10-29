@@ -1,8 +1,8 @@
 /**
  *
  */
-import http from '../../httpApi.js'
+import http from '../httpApi.js'
 
 export function importPositionAdjustmentPersonInfo(data) {
-  return http.$http.post('ers/eps/adjust/importByExcel', data)
+  return http.$cloud.post('ers/eps/adjust/importByExcel', data)
 }
