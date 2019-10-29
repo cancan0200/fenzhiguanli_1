@@ -8,15 +8,19 @@ import './common.js'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import './assets/styles/index.scss'
+import i18n from 'vue-i18n'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
+
+Vue.prototype.$baseUrl = process.env.API_ROOT
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
   store,
+  i18n,
   components: { App },
   template: '<App/>'
 })

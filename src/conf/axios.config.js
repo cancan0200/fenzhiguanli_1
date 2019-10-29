@@ -5,9 +5,10 @@
  * commonConfig -- 默认服务调用对象配置
  * root -- 分域服务调用对象配置，其中的属性对应具体的一个域的服务调用配置
  */
-//
-// console.log(NODE_ENV, window.BWEUM);
-// // 兼容多环境和域名二者配置
+
+const NODE_ENV = process.env.NODE_ENV
+
+// 兼容多环境和域名二者配置
 // (() => {
 //   var defining = {
 //     appBaseUrl: NODE_ENV === 'domain' ? window.APP_BASE_URL : APP_URL,
@@ -30,7 +31,7 @@ const conf = {
   },
   root: {
     cloud: {
-      // baseURL: 'http://www.example.com',
+      // baseURL: process.env.API_ROOT,
       baseUrl: '/api',
       timeout: 30000
     },
