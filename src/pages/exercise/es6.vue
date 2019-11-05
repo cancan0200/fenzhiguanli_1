@@ -12,8 +12,17 @@
       <el-button type="primary" @click="axiosFengzhuangTest()">代理</el-button>
     </div>
     <div class="study-box-wrap mt-10">
-      <el-row class="mt-10">ss</el-row>
-      <div id="log"></div>
+      <el-row class="mt-10">
+        <div v-for="(newItem, index) in newsList" :key="index" class="text-item text-gray">
+          {{newItem.title}}
+        </div>
+      </el-row>
+      <el-row class="mt-10">
+        <div v-for="(peopleItem, index) in peopleList" :key="index" class="text-item text-gray">
+          {{peopleItem}}
+        </div>
+      </el-row>
+<!--      <div id="log"></div>-->
     </div>
 
     <!-- 文件上传 -->
@@ -26,19 +35,32 @@
 <script>
   import {ENTRY_API} from '../../api/test/test'
   import {importPositionAdjustmentPersonInfo} from '../../api/positionApi'
+  import {studyMixin} from './../common/mixins'
 
   export default {
     name: 'es6',
+    mixins: [studyMixin],
+    data() {
+      return {
+        newsList: []
+      }
+    },
     mounted () {
-      console.log(ENTRY_API)
-      // ENTRY_API.guideAdd().then(res => {
-      //   console.log('ss')
-      // })
-
+      console.log(this.peopleList)
     },
     methods: {
       axiosFengzhuangTest() {
-        importPositionAdjustmentPersonInfo().then().catch(err => {
+        this.getTestResult()
+        let params = {
+          name: 'test'
+        }
+        importPositionAdjustmentPersonInfo(params).then(res => {
+          console.log(res)
+          this.newsList = res.data
+          if(this.resSuccess(res)){
+            console.log(res)
+          }
+        }).catch(err => {
           console.error('err', err)
         })
       },

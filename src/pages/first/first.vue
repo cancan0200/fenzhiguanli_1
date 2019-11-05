@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="study-box-wrap">
     <input v-model='computedArr'></input>
     <button @click="getTargetArr">生成</button>
     {{targetArr}}}
@@ -9,6 +9,8 @@
     {{isMenu}}
 
     <input ref="fileUploader" type="file" @change="fileUploadChange()"/>
+    <el-button type="primary" @click="carryingTest()">柯里化</el-button>
+    <el-button type="primary" @click="asyncTest()">async await</el-button>
   </div>
 </template>
 
@@ -31,6 +33,67 @@
       },
       getVuex () {
         this.isMenu = this.$store.state.firstStore.applyId
+      },
+
+      asyncTest() {
+       console.log(-0 === +0)
+        // function b () {
+        //   return new Promise((resolve, reject) => {
+        //     console.log('b')
+        //   })
+        // }
+        // function c () {
+        //   console.log('c')
+        // }
+        // const a = () => {
+        //   console.log('a')
+        //   b().then(() => {
+        //     console.log('dd')
+        //     c()
+        //   }).catch((e) => {
+        //     console.log(e)
+        //   })
+        // };
+        //
+        // a()
+      },
+
+      carryingTest(){
+
+        try {
+
+        } catch (e) {
+
+        }
+        // 每月开销函数
+        var currying = function (fn) {
+          var args = [];
+          return function () {
+            if(arguments.length === 0){
+              return fn.apply(this, args)
+            } else {
+              [].push.apply(args, arguments);
+              return fn.apply(this, args);
+            }
+          }
+        }
+
+        var cost = (function () {
+          var money = 0;
+          return function () {
+            for (var i = 0, l = arguments.length; i < l; i++) {
+              money += arguments[i];
+            }
+            return money;
+          }
+        })();
+
+        var cost = currying(cost); // 转化成 currying 函数
+        cost(100); // 未真正求值
+        cost(200); // 未真正求值
+        cost(300);   // 未真正求值
+        alert(cost());  // 求值并输出：600
+
       },
 
       getTargetArr () {
@@ -61,7 +124,7 @@
         //     }
         // })
         // this.targetArr = [...evenArr, ...oddArr]
-      }
+      },
     }
   }
 </script>

@@ -31,7 +31,7 @@ const conf = {
   },
   root: {
     cloud: {
-      // baseURL: process.env.API_ROOT,
+      // baseURL: window.appBaseUrl,
       baseUrl: '/api',
       timeout: 30000
     },

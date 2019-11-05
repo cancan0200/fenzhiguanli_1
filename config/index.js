@@ -7,11 +7,22 @@ const proxyConfig = require('./proxyConfig')
 
 module.exports = {
   dev: {
-
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: proxyConfig.proxy,
+//    proxyTable: {
+//      '/api': {
+//        target: 'http://v.juhe.cn',
+//        // 接口域名
+//        changeOrigin: true,
+//        //是否跨域
+//        pathRewrite: {
+//          '^/api': ''
+//          //需要rewrite的,
+//        }
+//      }
+//    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
