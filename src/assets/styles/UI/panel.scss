@@ -1,0 +1,28 @@
+
+@import "../variable";
+
+.study-panel__wrapper{
+  background: #fff;
+  .panel__header{
+    position: relative;
+    &:after{
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      border-bottom: 1px solid $color-border;
+    }
+    .panel__title{
+      padding: 0 30px;
+      font-size: 16px;
+      font-weight: bold;
+      height: 50px;
+      line-height: 50px;
+      vertical-align: middle;
+    }
+  }
+  .panel__content{
+    padding: 20px 30px;
+  }
+}

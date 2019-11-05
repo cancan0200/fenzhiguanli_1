@@ -2,7 +2,7 @@
 @import "../variable";
 
 .study-box-wrap {
-  padding: 5px 15px;
+  padding: 20px 30px;
   background-color: #fff;
   &.box__border {
     border: 1px solid $color-border;
@@ -11,4 +11,13 @@
   &.box__nobg {
     background-color: transparent;
   }
+}
+
+.study-box-title{
+  color: #333;
+  font-size: 14px;
+  margin: 0;
+  // padding:10px 0;
+  padding-bottom: 10px;
+  font-weight: bold;
 }

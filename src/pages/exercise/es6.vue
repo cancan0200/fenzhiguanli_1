@@ -17,12 +17,20 @@
           {{newItem.title}}
         </div>
       </el-row>
-      <el-row class="mt-10">
-        <div v-for="(peopleItem, index) in peopleList" :key="index" class="text-item text-gray">
-          {{peopleItem}}
-        </div>
-      </el-row>
+<!--      <el-row class="mt-10">-->
+<!--        <div v-for="(peopleItem, index) in peopleList" :key="index" class="text-item text-gray">-->
+<!--          {{peopleItem}}-->
+<!--        </div>-->
+<!--      </el-row>-->
 <!--      <div id="log"></div>-->
+    </div>
+    <div class=" mt-10">
+      <div class="study-panel__wrapper">
+        <div class="panel__header">
+          <div class="panel__title">symbol</div>
+        </div>
+        <div class="panel__content">content</div>
+      </div>
     </div>
 
     <!-- 文件上传 -->
